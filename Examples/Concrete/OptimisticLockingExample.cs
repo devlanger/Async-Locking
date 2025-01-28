@@ -16,6 +16,8 @@ public class OptimisticLockingExample : ILockingExample
 
     public void Execute()
     {
+        //Using versions allow to not block users from save itself, although it handles exception and notifies user
+        //that update was not successful
         for (int i = 0; i < 2; i++)
         {
             var userIndex = i;

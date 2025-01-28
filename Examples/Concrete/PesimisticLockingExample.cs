@@ -1,15 +1,9 @@
 namespace Locking;
 
-public class PessimisticLockingProcessor : ILockingExample
+public class PessimisticLockingExample(string filePath) : ILockingExample
 {
-    private readonly string _filePath;
     private readonly object lockObject = new object();
 
-    public PessimisticLockingProcessor(string filePath)
-    {
-        _filePath = filePath;
-    }
-    
     public void Execute()
     {
         //Locks resources and each new iteration waits for a lock to be released. This introduces waiting time.
@@ -19,13 +13,18 @@ public class PessimisticLockingProcessor : ILockingExample
             {
                 lock (lockObject)
                 {
-                    File.WriteAllText(_filePath, "Text1");
+                    Write("Text1");
                     Thread.Sleep(1000);
-                    File.WriteAllText(_filePath, "Text2");
+                    Write("Text2");
                 }
             });
     
             t.Start();
         }
+    }
+
+    private void Write(string content)
+    {
+        File.WriteAllText(filePath, content);
     }
 }

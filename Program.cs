@@ -7,7 +7,7 @@ if (!File.Exists(filePath))
     File.Create(filePath);
 }
 
-IList<ILockingExample> examples = [new PessimisticLockingProcessor(filePath), new OptimisticLockingExample()];
+IList<ILockingExample> examples = [new PessimisticLockingExample(filePath), new OptimisticLockingExample()];
 
 Console.WriteLine("Please select a locking example:");
 Console.WriteLine("0 - Pessimistic example");
