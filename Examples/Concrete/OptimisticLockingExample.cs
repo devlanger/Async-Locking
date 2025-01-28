@@ -32,11 +32,11 @@ public class OptimisticLockingExample : ILockingExample
                 {
                     item.Content = "Updated Content";
                     item.Version++;
-                    Console.WriteLine("Updated content successfully");
+                    Console.WriteLine($"User {userIndex} Updated content successfully");
                 }
                 else
                 {
-                    Console.WriteLine("Version mismatch. Update failed.");
+                    Console.WriteLine($"Version mismatch. Update failed for User {userIndex}.");
                 }
             });
             t.Start();
